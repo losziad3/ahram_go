@@ -1,8 +1,9 @@
 import 'package:ahramgo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class Servicesscreen extends StatelessWidget {
-  const Servicesscreen(
+class ServicesScreen extends StatelessWidget {
+  const ServicesScreen(
       {super.key,
       required this.image,
       required this.text1,
@@ -19,7 +20,7 @@ class Servicesscreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Image.asset(image),
+            child: SvgPicture.asset(image, height: 400,),
             // child: SvgPicture.asset("assets/images/Image1.svg"),
           ),
           const SizedBox(

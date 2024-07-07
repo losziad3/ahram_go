@@ -1,26 +1,27 @@
 import 'package:ahramgo/core/utils/app_router.dart';
 import 'package:ahramgo/core/utils/assets.dart';
+import 'package:ahramgo/core/utils/routes.dart';
 import 'package:ahramgo/core/utils/widgets/CustomButton.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/custom_services_screen.dart';
+import 'package:ahramgo/features/onboarding/widgets/custom_services_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Servicesalltime extends StatelessWidget {
-  const Servicesalltime({super.key});
+class ServicesAllTime extends StatelessWidget {
+  const ServicesAllTime({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          const Servicesscreen(
-              image: AssetsData.Services,
+          const ServicesScreen(
+              image: kThirdOnboarding,
               text1: "خدمتنا متوفرة طوال الوقت",
               text2: "نسعى بكل جهد أن نكون بجانبكم طوال الوقت، فلن تشعر أنك",
               text3: "بمفردك أبدًا."),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(AppRouter.kCustomCare);
+              GoRouter.of(context).push(Routes.kCustomCare);
             },
             child: SizedBox(
               width: MediaQuery.of(context).size.width,

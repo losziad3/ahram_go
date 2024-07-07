@@ -1,6 +1,6 @@
 import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/core/utils/widgets/CustomButton.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/CustomServicesScreen.dart';
+import 'package:ahramgo/features/onboarding/widgets/custom_services_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,8 +12,8 @@ class CustomCare extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const Servicesscreen(
-              image: AssetsData.CustomCare,
+          const ServicesScreen(
+              image: kFourthOnboarding,
               text1: "رعاية كاملة وشاملة",
               text2: "نسعى لتوفير كل سُبل الرعاية الشاملة من أجل سياريتك وكل ",
               text3: "هذا في مكان واحد."),
