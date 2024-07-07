@@ -1,7 +1,7 @@
 import 'package:ahramgo/core/utils/app_router.dart';
 import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/core/utils/widgets/CustomButton.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/CustomServicesScreen.dart';
+import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/custom_services_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
