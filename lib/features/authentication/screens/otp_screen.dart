@@ -126,12 +126,16 @@ class OTPScreen extends StatelessWidget {
                         },
                         builder: (context, state) {
 
-                          return ElevatedButton(onPressed: (){
-                            if (formKey.currentState!.validate()) {
-                              final otpCode = otpController.text.trim();
-                              context.read<RegisterCubit>().loginOTP(otpCode);
-                            }
-                          }, child: Text("TEST"));
+                          return MainButton(
+                            color: mainColor,
+                            text: "تسجيل الدخول",
+                            onTap: () {
+                              if (formKey.currentState!.validate()) {
+                                final otpCode = otpController.text.trim();
+                                context.read<RegisterCubit>().loginOTP(otpCode);
+                              }
+                            },
+                          );
                         },
                       ),
                     ),
@@ -146,13 +150,4 @@ class OTPScreen extends StatelessWidget {
   }
 }
 /*
-* return MainButton(
-                            color: mainColor,
-                            text: "تسجيل الدخول",
-                            onTap: () {
-                              if (formKey.currentState!.validate()) {
-                                final otpCode = otpController.text.trim();
-                                context.read<RegisterCubit>().loginOTP(otpCode);
-                              }
-                            },
-                          );*/
+* return */

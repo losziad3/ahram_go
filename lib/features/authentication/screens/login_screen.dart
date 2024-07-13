@@ -83,10 +83,7 @@ class LoginScreen extends StatelessWidget {
                           content: Text(state.response.message),
                         ));
                         // Pass the phone number as an extra parameter
-                        GoRouter.of(context).push(
-                          Routes.kOTPScreen,
-                          extra: phoneController.text,
-                        );
+                        GoRouter.of(context).push(Routes.kOTPScreen, extra: phoneController.text,);
                       } else if (state is RegisterFailureState) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('Error: ${state.error}'),
@@ -110,7 +107,7 @@ class LoginScreen extends StatelessWidget {
                               // Close the keyboard
                               FocusScope.of(context).unfocus();
                               if (formKey.currentState!.validate()) {
-                                final phone = phoneController.text;
+                                final phone = phoneController.text.trim();
                                 context.read<RegisterCubit>().register(phone);
                               }
                             },
