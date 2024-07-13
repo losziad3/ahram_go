@@ -2,8 +2,10 @@ import 'package:ahramgo/components/custom_number_text_form_field.dart';
 import 'package:ahramgo/components/main_button.dart';
 import 'package:ahramgo/components/title_of_text_form_field.dart';
 import 'package:ahramgo/core/constants/colors.dart';
+import 'package:ahramgo/core/local/shared_preferences.dart';
 import 'package:ahramgo/cubits/auth_cubit/cubit.dart';
 import 'package:ahramgo/cubits/auth_cubit/states.dart';
+import 'package:ahramgo/data/models/register_model.dart';
 import 'package:ahramgo/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,9 +57,9 @@ class OTPScreen extends StatelessWidget {
                       fontSize: 18.0,
                     ),
                   ),
-                  Text(
-                    '(01099682110)',
-                    style: TextStyle(
+                   Text(
+                    '${SharedPreferencesHelper.savedPhone}',
+                    style: const TextStyle(
                       fontSize: 18.0,
                       color: Colors.amberAccent,
                     ),
@@ -117,7 +119,7 @@ class OTPScreen extends StatelessWidget {
                               content: Text(state.response.msg),
                             ));
                             print(state.response);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
 
                           } else if (state is LoginFailureState) {
                             // Handle login failure
@@ -125,7 +127,9 @@ class OTPScreen extends StatelessWidget {
                           }
                         },
                         builder: (context, state) {
-
+                          if (state is RegisterLoadingState) {
+                            return const CircularProgressIndicator();
+                          }
                           return MainButton(
                             color: mainColor,
                             text: "تسجيل الدخول",
@@ -149,5 +153,3 @@ class OTPScreen extends StatelessWidget {
     );
   }
 }
-/*
-* return */
