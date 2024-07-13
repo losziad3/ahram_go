@@ -15,11 +15,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appRouter = AppRouter();
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData(fontFamily: 'Cairo'),
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.kOnboarding,
-      onGenerateRoute: appRouter.onGenerateRoute,
+      routerConfig: AppRouter.router,
     );
   }
 }

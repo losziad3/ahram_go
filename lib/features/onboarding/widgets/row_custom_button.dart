@@ -1,4 +1,4 @@
-import 'package:ahramgo/core/utils/widgets/CustomButton.dart';
+import 'package:ahramgo/components/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class ListCustomButton extends StatelessWidget {
@@ -9,7 +9,7 @@ class ListCustomButton extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Custombutton(
+        CustomButton(
           text: "التالي",
           color: Color(0xFF144CA1),
           textStyle: TextStyle(
@@ -18,7 +18,7 @@ class ListCustomButton extends StatelessWidget {
               fontWeight: FontWeight.w700,
               fontSize: 14),
         ),
-        Custombutton(
+        CustomButton(
           text: "تخطي",
           color: Color(0x02000000),
           textStyle: TextStyle(

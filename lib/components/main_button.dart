@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Custombutton extends StatelessWidget {
-  const Custombutton(
-      {super.key,
-      this.onTap,
-      required this.text,
-      required this.color,
-      this.textStyle});
+class MainButton extends StatelessWidget {
+  MainButton( {this.onTap, required this.text, this.color});
 
-  final String text;
-  final VoidCallback? onTap;
-  final Color? color;
-  final TextStyle? textStyle;
+  String text;
+  VoidCallback? onTap;
+  Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +15,8 @@ class Custombutton extends StatelessWidget {
     final screenHeight = mediaQuery.size.height;
 
     // Calculate the button width and height as a percentage of the screen size
-    final buttonWidth = screenWidth * 0.4; // Width as 80% of the screen width
-    final buttonHeight =
-        screenHeight * 0.06; // Height as 6% of the screen height
+    final buttonWidth = screenWidth * 0.8; // Width as 80% of the screen width
+    final buttonHeight = screenHeight * 0.07; // Height as 6% of the screen height
 
     return GestureDetector(
       onTap: onTap,
@@ -31,13 +24,15 @@ class Custombutton extends StatelessWidget {
         width: buttonWidth, // Use calculated width
         height: buttonHeight, // Use calculated height
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(15),
           color: color,
         ),
         child: Center(
           child: Text(
             text,
-            style: textStyle,
+            style: const TextStyle(
+              color: Colors.white,
+            ),
           ),
         ),
       ),
