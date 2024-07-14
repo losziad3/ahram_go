@@ -12,4 +12,10 @@ abstract class Styles {
     fontWeight: FontWeight.w400,
     color: Color(0xCC000000),
   );
+  static const textstyle16 = TextStyle(
+    fontSize: 16,
+    fontFamily: "Cairo",
+    fontWeight: FontWeight.w500,
+    color: Color(0xFF211F54),
+  );
 }

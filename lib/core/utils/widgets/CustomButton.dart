@@ -6,7 +6,8 @@ class Custombutton extends StatelessWidget {
       this.onTap,
       required this.text,
       required this.color,
-      this.textStyle});
+      this.textStyle,
+      Null Function()? onPressed});
 
   final String text;
   final VoidCallback? onTap;
@@ -31,7 +32,7 @@ class Custombutton extends StatelessWidget {
         width: buttonWidth, // Use calculated width
         height: buttonHeight, // Use calculated height
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(10),
           color: color,
         ),
         child: Center(

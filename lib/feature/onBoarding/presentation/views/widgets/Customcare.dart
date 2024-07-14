@@ -1,3 +1,4 @@
+import 'package:ahramgo/core/utils/app_router.dart';
 import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/core/utils/widgets/CustomButton.dart';
 import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/CustomServicesScreen.dart';
@@ -19,7 +20,7 @@ class CustomCare extends StatelessWidget {
               text3: "هذا في مكان واحد."),
           GestureDetector(
             onTap: () {
-              GoRouter.of(context).push("location");
+              GoRouter.of(context).push(AppRouter.kHomeview);
             },
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
