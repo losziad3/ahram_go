@@ -1,4 +1,5 @@
 import 'package:ahramgo/components/custom_button.dart';
+import 'package:ahramgo/core/constants/colors.dart';
 import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
@@ -10,36 +11,57 @@ class CraftsMen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2.5 / 1,
-      child: GestureDetector(
-        onTap: () => showModalBottomSheet(
-          context: context,
-          builder: (context) => BuildSheet(),
-        ),
-        child: Container(
-          width: 120,
-          decoration: BoxDecoration(
-            color: const Color(0x05000000),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // SvgPicture.asset(
-              //   AssetsData.washingmachine,
-              //   fit: BoxFit.cover,
-              // ),
-              const SizedBox(height: 8),
-              Text(
-                text,
-                style: Styles.textstyle16.copyWith(fontWeight: FontWeight.w600),
-                textAlign: TextAlign.center,
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        double width =
+            constraints.maxWidth * 0.3; // Adjust as needed for responsiveness
+        return AspectRatio(
+          aspectRatio: 2.5 / 1,
+          child: GestureDetector(
+            onTap: () => showModalBottomSheet(
+              context: context,
+              builder: (context) => SizedBox(
+                height: MediaQuery.of(context).size.height *
+                    0.74, // Adjust the height as needed
+                child: BuildSheet(),
               ),
-            ],
+              isScrollControlled:
+                  true, // Allows the bottom sheet to be full screen
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Centered photo above the container
+                SvgPicture.asset(
+                  craftsmen,
+                  fit: BoxFit.cover,
+                  width: width * 0.6,
+                ),
+                const SizedBox(height: 8),
+                Container(
+                  width: width,
+                  decoration: BoxDecoration(
+                    color: const Color(0x05000000),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      // Adjust this container content if needed
+                      Text(
+                        text,
+                        style: Styles.textstyle16
+                            .copyWith(fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -54,21 +76,21 @@ class BuildSheetState extends State<BuildSheet> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: FractionallySizedBox(
         widthFactor: 1.0,
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
+          padding: EdgeInsets.symmetric(
+              vertical: 30, horizontal: screenWidth * 0.05),
           child: ListView(
             children: [
               const Text(
                 "نوع الحرفي",
                 style: Styles.textstyle16,
               ),
-              const SizedBox(
-                height: 5,
-              ),
+              const SizedBox(height: 5),
               DropdownButtonFormField<String>(
                 value: selectedValue,
                 hint: const Text('اختار الحرفي'),
@@ -104,7 +126,7 @@ class BuildSheetState extends State<BuildSheet> {
               ),
               const SizedBox(height: 8),
               TextFormField(
-                maxLines: 8, // Adjust the number of lines as needed
+                maxLines: 6,
                 decoration: InputDecoration(
                   hintText: 'من فضلك ادخل اي تعليمات او تعليقات',
                   border: OutlineInputBorder(
@@ -116,20 +138,16 @@ class BuildSheetState extends State<BuildSheet> {
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                 ),
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               const Text(
                 "العنوان",
                 style: Styles.textstyle16,
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               AspectRatio(
                 aspectRatio: 7 / 1,
                 child: Container(
-                  width: 226,
+                  width: screenWidth * 0.8,
                   decoration: BoxDecoration(
                     border: Border.all(color: const Color(0xFFA0A3BD)),
                     borderRadius: BorderRadius.circular(32),
@@ -156,22 +174,18 @@ class BuildSheetState extends State<BuildSheet> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               const CustomButton(
                 text: "طلب",
-                color: Color(0xFF124CA1),
+                color: mainColor,
                 textStyle: TextStyle(color: Colors.white),
               ),
-              const SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               const CustomButton(
                 text: "الغاء",
                 color: Colors.white10,
                 textStyle: TextStyle(
-                  color: Color(0xFF124CA1),
+                  color: mainColor,
                 ),
               ),
             ],

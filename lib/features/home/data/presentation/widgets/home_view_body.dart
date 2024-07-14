@@ -2,6 +2,7 @@ import 'package:ahramgo/core/utils/styles.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/adv.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/custom_appbar.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/custom_feature_listview.dart';
+import 'package:ahramgo/features/home/data/presentation/widgets/custom_nav_bar.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/previous_request_list.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,7 @@ class HomeViewBody extends StatelessWidget {
             height: 9,
           ),
           PreviousRequestList(),
-          // NavBar(), // Make sure this is correctly positioned
+          NavBar(),
         ],
       ),
     );

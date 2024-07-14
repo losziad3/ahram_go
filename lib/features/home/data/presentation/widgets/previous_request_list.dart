@@ -16,7 +16,7 @@ class PreviousRequestList extends StatelessWidget {
               Expanded(
                 child: PreviousRequest(
                   text: "طلبات",
-                  image: kFirstOnboarding,
+                  image: kOrderLogo,
                 ),
               ),
               SizedBox(
@@ -25,7 +25,7 @@ class PreviousRequestList extends StatelessWidget {
               Expanded(
                 child: PreviousRequest(
                   text: "غسلات",
-                  image: kFirstOnboarding,
+                  image: kWashingMachine,
                 ),
               ),
               SizedBox(
@@ -34,7 +34,7 @@ class PreviousRequestList extends StatelessWidget {
               Expanded(
                 child: PreviousRequest(
                   text: "تنقلات",
-                  image: kFirstOnboarding,
+                  image: kTaxiLogo,
                 ),
               ),
             ],

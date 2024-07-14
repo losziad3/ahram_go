@@ -16,7 +16,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const Onboarding(),
+        builder: (context, state) => const Homeview(),
       ),
       GoRoute(
         path: Routes.kCustomerTrust,

@@ -11,11 +11,11 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
         children: [
-          // SvgPicture.asset(AssetsData.menu),
+          SvgPicture.asset(kMenuLogo),
           const Spacer(
             flex: 1,
           ),
-          // SvgPicture.asset(AssetsData.bell),
+          SvgPicture.asset(kNotificationLogo),
         ],
       ),
     );
