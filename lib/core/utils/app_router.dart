@@ -1,17 +1,17 @@
-import 'package:ahramgo/feature/home/data/presentation/views/home_view.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/Onboarding.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/Customcare.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/CustomerTrust.dart';
-import 'package:ahramgo/feature/onBoarding/presentation/views/widgets/ServicesAllTime.dart';
+import 'package:ahramgo/core/utils/routes.dart';
+import 'package:ahramgo/cubits/auth_cubit/cubit.dart';
+import 'package:ahramgo/features/authentication/screens/login_screen.dart';
+import 'package:ahramgo/features/authentication/screens/otp_screen.dart';
+import 'package:ahramgo/features/home/data/presentation/views/home_view.dart';
+import 'package:ahramgo/features/onboarding/screens/onboarding.dart';
+import 'package:ahramgo/features/onboarding/widgets/custom_care.dart';
+import 'package:ahramgo/features/onboarding/widgets/customer_trust.dart';
+import 'package:ahramgo/features/onboarding/widgets/services_all_time.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ahramgo/data/repository/ahram_go_repository.dart';
 import 'package:go_router/go_router.dart';
 
-// GoRouter configuration
-abstract class AppRouter {
-  static const kCustomertrust = '/Customertrust';
-  static const kServicesalltime = '/Servicesalltime';
-  static const kCustomCare = "/CustomCare";
-  static const kHomeview = "/Homeview";
-  static const kCraftsheet = "/CustomCraftsheet";
+class AppRouter {
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -19,25 +19,35 @@ abstract class AppRouter {
         builder: (context, state) => const Onboarding(),
       ),
       GoRoute(
-        path: kCustomertrust,
-        builder: (context, state) => const Customertrust(),
+        path: Routes.kCustomerTrust,
+        builder: (context, state) => const CustomerTrust(),
       ),
       GoRoute(
-        path: kServicesalltime,
-        builder: (context, state) => const Servicesalltime(),
+        path: Routes.kServicesAllTime,
+        builder: (context, state) => const ServicesAllTime(),
       ),
       GoRoute(
-        path: kCustomCare,
+        path: Routes.kCustomCare,
         builder: (context, state) => const CustomCare(),
       ),
       GoRoute(
-        path: kHomeview,
+        path: Routes.kLoginScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => RegisterCubit(AhramGoRepository()),
+          child: LoginScreen(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.kOTPScreen,
+        builder: (context, state) => BlocProvider(
+          create: (context) => RegisterCubit(AhramGoRepository()),
+          child: OTPScreen(),
+        ),
+      ),
+      GoRoute(
+        path: Routes.kHomePage,
         builder: (context, state) => const Homeview(),
       ),
-      // GoRoute(
-      //   path: kCraftsheet,
-      //   builder: (context, state) => const CustomCraftsheet(),
-      // ),
     ],
   );
 }
