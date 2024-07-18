@@ -18,4 +18,9 @@ abstract class Styles {
     fontWeight: FontWeight.w500,
     color: Color(0xFF211F54),
   );
+  static const textstyle20 = TextStyle(
+      fontSize: 20,
+      fontFamily: "Cairo",
+      fontWeight: FontWeight.w500,
+      color: Colors.black);
 }

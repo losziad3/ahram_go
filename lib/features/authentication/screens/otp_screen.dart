@@ -3,16 +3,12 @@ import 'package:ahramgo/components/main_button.dart';
 import 'package:ahramgo/components/title_of_text_form_field.dart';
 import 'package:ahramgo/core/constants/colors.dart';
 import 'package:ahramgo/core/local/shared_preferences.dart';
-import 'package:ahramgo/core/utils/app_router.dart';
-import 'package:ahramgo/core/utils/routes.dart';
+import 'package:ahramgo/core/utils/styles.dart';
 import 'package:ahramgo/cubits/auth_cubit/cubit.dart';
 import 'package:ahramgo/cubits/auth_cubit/states.dart';
-import 'package:ahramgo/data/models/register_model.dart';
 import 'package:ahramgo/features/home/data/presentation/views/home_view.dart';
-import 'package:ahramgo/test_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
 class OTPScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -35,27 +31,44 @@ class OTPScreen extends StatelessWidget {
               key: formKey,
               child: Column(
                 children: [
-                  const Text(
-                    'تسجيل الدخول',
-                    style: TextStyle(
-                      fontSize: 26.0,
-                      color: mainColor,
-                    ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(7.0),
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text(
+                            "عوده",
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color(0xFF007AFF),
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 90,
+                      ),
+                      const Text(
+                        'التسجيل',
+                        style: TextStyle(
+                          fontSize: 26.0,
+                          color: mainColor,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    height: screenHeight * .02,
+                    height: screenHeight * .03,
                   ),
-                  const Text(
-                    'مرحبا بك في AHRAM GO',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
+                  const Text('Ahram GO مرحبا بك في', style: Styles.textstyle20),
                   SizedBox(
                     height: screenHeight * 0.03,
                   ),
                   Text(
-                    'قمنا بارسال 6 ارقام عبر الواتس اب علي الرقم ',
+                    ' قمنا بارسال ٦ ارقام لك عبر الواتس اب علي رقم  ',
                     style: TextStyle(
                       color: Colors.grey[600],
                       fontSize: 18.0,
@@ -99,7 +112,7 @@ class OTPScreen extends StatelessWidget {
                       validator: (value) {
                         if (value == null ||
                             value.isEmpty ||
-                            value.length < 4) {
+                            value.length < 6) {
                           return 'الرمز غير صحيح';
                         }
                         return null;
@@ -109,7 +122,7 @@ class OTPScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: screenHeight * 0.2,
+                    height: screenHeight * 0.02,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
@@ -140,26 +153,54 @@ class OTPScreen extends StatelessWidget {
                           }
                           return GestureDetector(
                             onTap: () {
-                              GoRouter.of(context).push(Routes.kHomePage);
+                              if (formKey.currentState!.validate()) {
+                                final otpCode = otpController.text.trim();
+                                context.read<RegisterCubit>().loginOTP(otpCode);
+                              }
+                              // GoRouter.of(context).push(Routes.kHomePage);
                             },
-                            child: MainButton(
-                              color: mainColor,
-                              text: "تسجيل الدخول",
-                              onTap: () {
-                                // if (formKey.currentState!.validate()) {
-                                //   final otpCode = otpController.text.trim();
-                                //   context
-                                //       .read<RegisterCubit>()
-                                //       .loginOTP(otpCode);
-                                // }
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => Homeview(),));
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: MainButton(
+                                color: mainColor,
+                                text: "تسجيل الدخول",
+                                onTap: () {
+                                  if (formKey.currentState!.validate()) {
+                                    final otpCode = otpController.text.trim();
+                                    context
+                                        .read<RegisterCubit>()
+                                        .loginOTP(otpCode);
+                                  }
+                                },
+                              ),
                             ),
                           );
                         },
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          " اعد الارسال",
+                          style: Styles.textstyle16.copyWith(
+                            color: const Color(0xFF124CA1),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 3,
+                        ),
+                        const Text(
+                          "لم تحصل علي كود؟",
+                          style: Styles.textstyle16,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),

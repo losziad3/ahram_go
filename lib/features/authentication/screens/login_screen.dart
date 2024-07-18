@@ -1,5 +1,6 @@
 import 'package:ahramgo/components/custom_number_text_form_field.dart';
 import 'package:ahramgo/core/utils/routes.dart';
+import 'package:ahramgo/core/utils/styles.dart';
 import 'package:ahramgo/cubits/auth_cubit/cubit.dart';
 import 'package:ahramgo/cubits/auth_cubit/states.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'package:ahramgo/core/constants/colors.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
-    var formKey = GlobalKey<FormState>();
+  var formKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   const Text(
-                    'تسجيل الدخول',
+                    'التسجيل',
                     style: TextStyle(
                       fontSize: 26.0,
                       color: mainColor,
@@ -40,10 +41,8 @@ class LoginScreen extends StatelessWidget {
                     height: screenHeight * .02,
                   ),
                   const Text(
-                    'مرحبا بك في AHRAM GO',
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
+                    'Ahram GO مرحبا بك في ',
+                    style: Styles.textstyle20,
                   ),
                   SizedBox(
                     height: screenHeight * 0.03,
@@ -74,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   // Button
                   SizedBox(
-                    height: screenHeight * 0.2,
+                    height: screenHeight * 0.03,
                   ),
                   BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
@@ -83,7 +82,10 @@ class LoginScreen extends StatelessWidget {
                           content: Text(state.response.message),
                         ));
                         // Pass the phone number as an extra parameter
-                        GoRouter.of(context).push(Routes.kOTPScreen, extra: phoneController.text,);
+                        GoRouter.of(context).push(
+                          Routes.kOTPScreen,
+                          extra: phoneController.text,
+                        );
                       } else if (state is RegisterFailureState) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Text('Error: ${state.error}'),
@@ -96,8 +98,8 @@ class LoginScreen extends StatelessWidget {
                       }
 
                       return Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: screenWidth * 0.01),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: screenWidth * 0.0),
                         child: SizedBox(
                           width: double.infinity,
                           child: MainButton(

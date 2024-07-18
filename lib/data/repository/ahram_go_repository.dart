@@ -1,9 +1,11 @@
 import 'dart:convert';
+
 import 'package:ahramgo/core/constants/api_constant.dart';
 import 'package:ahramgo/core/local/shared_preferences.dart';
 import 'package:ahramgo/data/models/login_model.dart';
 import 'package:ahramgo/data/models/register_model.dart';
 import 'package:dio/dio.dart';
+import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AhramGoRepository {
@@ -39,6 +41,7 @@ class AhramGoRepository {
     if (savedPhone == null) {
       throw Exception('No saved phone number found');
     }
+    // if null hyrg3ny lwra tani
 
     try {
       final response = await _dio.post(
@@ -46,7 +49,8 @@ class AhramGoRepository {
         options: Options(
           headers: {'Content-Type': 'application/json'},
         ),
-        data: jsonEncode({'phone': savedPhone, 'verificationCode': verificationCode}),
+        data: jsonEncode(
+            {'phone': savedPhone, 'verificationCode': verificationCode}),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
@@ -58,6 +62,4 @@ class AhramGoRepository {
       throw Exception('Failed to login client: ${e.message}');
     }
   }
-
-
 }

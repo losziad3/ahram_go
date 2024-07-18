@@ -3,7 +3,6 @@ import 'package:ahramgo/core/constants/colors.dart';
 import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/core/utils/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CraftsMen extends StatelessWidget {
   const CraftsMen({super.key, required this.text});
@@ -13,38 +12,40 @@ class CraftsMen extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double width =
-            constraints.maxWidth * 0.3; // Adjust as needed for responsiveness
+        double width = constraints.maxWidth * 0.3;
         return AspectRatio(
           aspectRatio: 2.5 / 1,
           child: GestureDetector(
             onTap: () => showModalBottomSheet(
               context: context,
               builder: (context) => SizedBox(
-                height: MediaQuery.of(context).size.height *
-                    0.74, // Adjust the height as needed
+                height: MediaQuery.of(context).size.height * 0.77,
                 child: BuildSheet(),
               ),
               isScrollControlled:
                   true, // Allows the bottom sheet to be full screen
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Centered photo above the container
-                SvgPicture.asset(
-                  craftsmen,
-                  fit: BoxFit.cover,
-                  width: width * 0.6,
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  width: width,
-                  decoration: BoxDecoration(
-                    color: const Color(0x05000000),
-                    borderRadius: BorderRadius.circular(16),
+            child: Container(
+              decoration: BoxDecoration(
+                color: const Color(0x05000000),
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Centered photo above the container
+                  Image.asset(
+                    kCrafts,
+                    fit: BoxFit.cover,
+                    width: width * 0.8,
                   ),
-                  child: Column(
+                  // SvgPicture.asset(
+                  //   craftsmen,
+                  //   fit: BoxFit.cover,
+                  //   width: width * 0.6,
+                  // ),
+                  const SizedBox(height: 8),
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Adjust this container content if needed
@@ -56,8 +57,8 @@ class CraftsMen extends StatelessWidget {
                       ),
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -181,11 +182,16 @@ class BuildSheetState extends State<BuildSheet> {
                 textStyle: TextStyle(color: Colors.white),
               ),
               const SizedBox(height: 10),
-              const CustomButton(
-                text: "الغاء",
-                color: Colors.white10,
-                textStyle: TextStyle(
-                  color: mainColor,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const CustomButton(
+                  text: "الغاء",
+                  color: Colors.white10,
+                  textStyle: TextStyle(
+                    color: mainColor,
+                  ),
                 ),
               ),
             ],

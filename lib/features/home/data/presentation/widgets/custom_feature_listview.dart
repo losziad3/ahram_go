@@ -1,3 +1,4 @@
+import 'package:ahramgo/core/utils/assets.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/Crafts_men.dart';
 import 'package:ahramgo/features/home/data/presentation/widgets/Custom_FeatureList.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,9 @@ class CustomFeaturedListview extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: CraftsMen(text: "الحرفيين",),
+                child: CraftsMen(
+                  text: "حرفيين",
+                ),
               ),
             ],
           ),
@@ -25,6 +28,7 @@ class CustomFeaturedListview extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomFeatureList(
+                  image: kOrder,
                   text: "التوصيل",
                 ),
               ),
@@ -33,6 +37,7 @@ class CustomFeaturedListview extends StatelessWidget {
               ),
               Expanded(
                 child: CustomFeatureList(
+                  image: kshopping,
                   text: "التسوق",
                 ),
               ),
@@ -45,6 +50,7 @@ class CustomFeaturedListview extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomFeatureList(
+                  image: ktransportation,
                   text: "النقل",
                 ),
               ),
@@ -53,6 +59,7 @@ class CustomFeaturedListview extends StatelessWidget {
               ),
               Expanded(
                 child: CustomFeatureList(
+                  image: kWashingcar,
                   text: "غسيل سيارات",
                 ),
               ),
