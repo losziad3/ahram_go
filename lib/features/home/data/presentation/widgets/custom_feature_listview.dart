@@ -13,7 +13,9 @@ class CustomFeaturedListview extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(child: CraftsMen(text: "الحرفيين")),
+              Expanded(
+                child: CraftsMen(text: "الحرفيين",),
+              ),
             ],
           ),
           SizedBox(

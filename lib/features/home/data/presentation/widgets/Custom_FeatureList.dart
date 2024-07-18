@@ -30,8 +30,7 @@ class CustomFeatureList extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   text,
-                  style:
-                      Styles.textstyle16.copyWith(fontWeight: FontWeight.w600),
+                  style: Styles.textstyle16.copyWith(fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
               ],

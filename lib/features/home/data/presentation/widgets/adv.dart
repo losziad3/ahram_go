@@ -9,7 +9,7 @@ class Adv extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SvgPicture.asset(kadvimage),
+        SvgPicture.asset(kAdvImage),
         const SizedBox(
           height: 15,
         ),

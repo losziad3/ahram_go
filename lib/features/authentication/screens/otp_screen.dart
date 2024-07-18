@@ -146,12 +146,13 @@ class OTPScreen extends StatelessWidget {
                               color: mainColor,
                               text: "تسجيل الدخول",
                               onTap: () {
-                                if (formKey.currentState!.validate()) {
-                                  final otpCode = otpController.text.trim();
-                                  context
-                                      .read<RegisterCubit>()
-                                      .loginOTP(otpCode);
-                                }
+                                // if (formKey.currentState!.validate()) {
+                                //   final otpCode = otpController.text.trim();
+                                //   context
+                                //       .read<RegisterCubit>()
+                                //       .loginOTP(otpCode);
+                                // }
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Homeview(),));
                               },
                             ),
                           );
