@@ -1,21 +1,26 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:ahramgo/core/constants/api_constant.dart';
-import 'package:ahramgo/core/local/shared_preferences.dart';
 import 'package:ahramgo/data/models/login_model.dart';
 import 'package:ahramgo/data/models/register_model.dart';
-import 'package:dio/dio.dart';
-import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-class AhramGoRepository {
-  final Dio _dio = Dio();
+abstract class RemoteDataSource {
+  Future<RegisterModel> registerClient(String phone);
+  Future<LoginModel> loginClient(String phone, String verificationCode);
+}
 
+class RemoteDataSourceImpl implements RemoteDataSource {
+  final Dio dio;
+
+  RemoteDataSourceImpl({required this.dio});
+
+  @override
   Future<RegisterModel> registerClient(String phone) async {
     const url = BASEURL + REGISTER;
 
     try {
-      final response = await _dio.post(
+      final response = await dio.post(
         url,
         options: Options(
           headers: {'Content-Type': 'application/json'},
@@ -24,7 +29,6 @@ class AhramGoRepository {
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
-        await SharedPreferencesHelper.savePhone(phone);
         return RegisterModel.fromJson(response.data);
       } else {
         throw Exception('Failed to register client');
@@ -34,23 +38,17 @@ class AhramGoRepository {
     }
   }
 
-  Future<LoginModel> loginClient(String verificationCode) async {
+  @override
+  Future<LoginModel> loginClient(String phone, String verificationCode) async {
     const url = BASEURL + LOGIN;
-    final String? savedPhone = await SharedPreferencesHelper.getSavedPhone();
-
-    if (savedPhone == null) {
-      throw Exception('No saved phone number found');
-    }
-    // if null hyrg3ny lwra tani
 
     try {
-      final response = await _dio.post(
+      final response = await dio.post(
         url,
         options: Options(
           headers: {'Content-Type': 'application/json'},
         ),
-        data: jsonEncode(
-            {'phone': savedPhone, 'verificationCode': verificationCode}),
+        data: jsonEncode({'phone': phone, 'verificationCode': verificationCode}),
       );
 
       if (response.statusCode == 200 || response.statusCode == 201) {

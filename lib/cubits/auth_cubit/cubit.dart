@@ -1,6 +1,5 @@
-
 import 'package:ahramgo/cubits/auth_cubit/states.dart';
-import 'package:ahramgo/data/repository/ahram_go_repository.dart';
+import 'package:ahramgo/domain/repository/ahram_go_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
@@ -8,28 +7,25 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   RegisterCubit(this.apiService) : super(RegisterInitialState());
 
+  // Registers a new user using the provided phone number
   Future<void> register(String phone) async {
     try {
       emit(RegisterLoadingState());
       final response = await apiService.registerClient(phone);
       emit(RegisterSuccessState(response));
     } catch (e) {
-      emit(RegisterFailureState(e.toString()));
+      emit(RegisterFailureState('Failed to register: ${e.toString()}'));
     }
   }
 
+  // Logs in the user using the provided verification code
   Future<void> loginOTP(String verificationCode) async {
-    // if (registeredPhoneNumber == null) {
-    //   emit(LoginFailureState('No phone number registered'));
-    //   return;
-    // }
-
     try {
       emit(LoginLoadingState());
       final response = await apiService.loginClient(verificationCode);
       emit(LoginSuccessState(response));
     } catch (e) {
-      emit(LoginFailureState(e.toString()));
+      emit(LoginFailureState('Failed to login: ${e.toString()}'));
     }
   }
 }
