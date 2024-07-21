@@ -61,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   NumberInputField(
-                    maxLength: 11,
+                    maxLength: 12,
                     validator: (value) {
                       if (value == null || value.isEmpty || value.length < 11) {
                         return 'رقم الموبايل غير صحيح';

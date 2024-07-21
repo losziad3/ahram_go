@@ -1,42 +1,76 @@
+import 'package:ahramgo/core/utils/app_router.dart';
+import 'package:ahramgo/core/utils/routes.dart';
 import 'package:ahramgo/features/onboarding/screens/onboarding.dart';
+import 'package:ahramgo/features/onboarding/widgets/onboarding_body.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class SplashViewbody extends StatefulWidget {
+  const SplashViewbody({Key? key}) : super(key: key);
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<SplashViewbody> createState() => _SplashViewbodyState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashViewbodyState extends State<SplashViewbody>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slidingAnimation;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(const Duration(microseconds: 500),(){
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const Onboarding(),));
-    });
+    initSlidingAnimation();
+
+    navigateToHome();
   }
+
   @override
-  void dispose(){
+  void dispose() {
     super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+
+    animationController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Container(
-        width: double.infinity,
-         color: const Color(0xFF144CA1),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/svg/Logo.png'),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: const Color(0xFF144CA1),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Image.asset('assets/svg/Logo.png'),
+          const SizedBox(
+            height: 4,
+          ),
+          // SlidingText(slidingAnimation: slidingAnimation),
+        ],
       ),
+    );
+  }
+
+  void initSlidingAnimation() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    slidingAnimation =
+        Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
+            .animate(animationController);
+
+    animationController.forward();
+  }
+
+  void navigateToHome() {
+    Future.delayed(
+      const Duration(seconds: 2),
+          () {
+
+            Navigator.push(context,MaterialPageRoute(builder: (context) => const Onboarding(),));
+      },
     );
   }
 }
